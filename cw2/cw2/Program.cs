@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 
 namespace cw2
 {
@@ -11,9 +12,11 @@ namespace cw2
             string sciezka_czytania = @"C:\Users\piotr\OneDrive\Desktop\dane.csv";
             string sciezka_zapisu = @"C:\Users\piotr\OneDrive\Desktop\wyjscie.txt";
 
+            ArrayList lista = new ArrayList();
 
             bool brak_pliku = false;
-            
+            bool powtorka = false;
+
             string[] lines = null;
             string[] dane;
 
@@ -37,6 +40,7 @@ namespace cw2
             }
 
 
+
             if (!brak_pliku)
             {
 
@@ -50,13 +54,36 @@ namespace cw2
                 for (int i = 0; i < lines.Length; i++)
                 {
                     dane = lines[i].Split(",");
+
                     if(dane.Length != 9)
                     {
                         log.WriteLine("POMINIETO : " + lines[i]);
                     }
                     else
                     {
-                        sw.WriteLine(lines[i]);
+                        
+                       foreach(string[] d in lista)
+                        {
+                            if(dane[0] == d[0] && dane[1] == d[1] && dane[4] == d[2])
+                            {
+                                Console.WriteLine("POWTORKA");
+                                powtorka = true;
+                            }
+                        }
+
+
+                        if (powtorka == false)
+                        {
+
+                            sw.WriteLine(lines[i]);
+                            string[] dane_osobiste = new string[3];
+                            dane_osobiste[0] = dane[0];
+                            dane_osobiste[1] = dane[1];
+                            dane_osobiste[2] = dane[4];
+                            lista.Add(dane_osobiste);
+                        }
+                        powtorka = false;
+
                     }
                 }
 
@@ -69,7 +96,10 @@ namespace cw2
 
 
         }
-                
+               
+        
+
+        
         
     }
   
