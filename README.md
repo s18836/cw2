@@ -1,3 +1,3 @@
 # cw2
 
-s18836 Piotr Józefowski
+Piotr Józefowski 20 s18836
