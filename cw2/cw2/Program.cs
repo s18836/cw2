@@ -16,6 +16,7 @@ namespace cw2
 
             bool brak_pliku = false;
             bool powtorka = false;
+            bool puste_pole = false;
 
             string[] lines = null;
             string[] dane;
@@ -68,11 +69,23 @@ namespace cw2
                             {
                                 Console.WriteLine("POWTORKA");
                                 powtorka = true;
+                                log.WriteLine("POWTORKA DANYCH DLA : " + lines[i]);
+
                             }
                         }
 
 
-                        if (powtorka == false)
+                        foreach (string pojedyncze in dane)
+                        {
+                            if (pojedyncze.Length == 0)
+                            {
+                                puste_pole = true;
+                                log.WriteLine("BRAKUJACE DANE DLA : " + lines[i]);
+                            }
+                        }
+
+
+                        if (powtorka == false && puste_pole == false)
                         {
 
                             sw.WriteLine(lines[i]);
@@ -83,6 +96,7 @@ namespace cw2
                             lista.Add(dane_osobiste);
                         }
                         powtorka = false;
+                        puste_pole = false;
 
                     }
                 }
