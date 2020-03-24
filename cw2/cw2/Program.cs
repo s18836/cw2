@@ -8,7 +8,7 @@ namespace cw2
         static void Main(string[] args)
         {
 
-            string sciezka_czytania = @"C:\Users\piotr\OneDrive\Desktop\dane2.csv";
+            string sciezka_czytania = @"C:\Users\piotr\OneDrive\Desktop\dane.csv";
             string sciezka_zapisu = @"C:\Users\piotr\OneDrive\Desktop\wyjscie.txt";
 
 
@@ -29,6 +29,11 @@ namespace cw2
                 log.WriteLine("NIE ODNALEZIONO PLIKU W LOKALIZACJI : " + sciezka_czytania);
                 log.Close();
                 brak_pliku = true;
+            }catch(ArgumentException argexc)
+            {
+                Console.WriteLine("NIEPRAWIDLOWA SCIEZKA PLIKU");
+                log.WriteLine("NIEPRAWIDLOWA SCIEZKA PLIKU : " + sciezka_czytania);
+                log.Close();
             }
 
 
@@ -37,7 +42,6 @@ namespace cw2
 
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    dane = lines[i].Split(",");
                     Console.WriteLine(lines[i]);
                 }
 
@@ -45,7 +49,15 @@ namespace cw2
 
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    sw.WriteLine(lines[i]);
+                    dane = lines[i].Split(",");
+                    if(dane.Length != 9)
+                    {
+                        log.WriteLine("POMINIETO : " + lines[i]);
+                    }
+                    else
+                    {
+                        sw.WriteLine(lines[i]);
+                    }
                 }
 
                 sw.Close();
