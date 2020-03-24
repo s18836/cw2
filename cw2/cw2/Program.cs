@@ -7,6 +7,7 @@ namespace cw2
     {
         static void Main(string[] args)
         {
+
             string sciezka_czytania = @"C:\Users\piotr\OneDrive\Desktop\dane2.csv";
             string sciezka_zapisu = @"C:\Users\piotr\OneDrive\Desktop\wyjscie.txt";
 
@@ -37,7 +38,6 @@ namespace cw2
                 for (int i = 0; i < lines.Length; i++)
                 {
                     dane = lines[i].Split(",");
-                    Console.WriteLine(dane.Length);
                     Console.WriteLine(lines[i]);
                 }
 
@@ -49,6 +49,7 @@ namespace cw2
                 }
 
                 sw.Close();
+                log.Close();
             
             }
 
