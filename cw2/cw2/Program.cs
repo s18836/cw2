@@ -6,7 +6,13 @@ namespace cw2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\piotr\OneDrive\Desktop\dane.csv");
+
+            for(int i = 0; i < lines.Length; i++)
+            {
+                Console.WriteLine(lines[i]);
+            }
         }
     }
 }
